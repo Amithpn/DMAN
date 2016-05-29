@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Data Management UI </title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><span>Data Management</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> Home </a>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> Material Management <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="Quotation.html">Quotation</a></li>
+      <li><a href="PurchaseOrder.html">Purchase Order</a></li>
+      <li><a href="InwardDC.html">Inward Delivery Challan</a></li>
+      <li><a href="ItemMaster.html">Item Master</a></li>
+      <li><a href="Vendor.html">Vendors</a></li>
+      <li><a href="#">Invoice</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-desktop"></i> Sales <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="#">Customer Enquiry</a></li>
+      <li><a href="Quotation.html">Generate Quotation</a></li>
+      <li><a href="PurchaseOrder.html">Save Purchase Order</a></li>
+      <li><a href="InwardDC.html">Delivery Challan</a></li>
+      <li><a href="ItemMaster.html">Customer Master</a></li>
+      <li><a href="#">Invoice</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> Transactions <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Receviable</a></li>
+      <li><a href="Payable.html">Payable</a></li>
+      <li><a href="Bank.html">Bank</a></li>
+      <li><a href="Cash.html">Cash</a></li>
+      <li><a href="Expenses.html">Expenses</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Services </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+
+          <div class="nav_menu">
+            <nav class="" role="navigation">
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <form class="navbar-form" role="search">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<span class="glyphicon glyphicon-search">
+												<span class="sr-only">Search...</span>
+											</span>
+										</button>
+									</span>
+								</div>
+							</form>
+                </li>
+		<li class = "">
+                  <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li class = "">
+                  <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+
+        </div>
+        <!-- /top navigation -->
+
+
+        <!-- page content -->
+        <div class="right_col" role="main" ng-app="myApp" ng-controller="myCtrl">
+			<div class="col-sm-10 text-left">
+	      	<h4>Enquiry Form</h4>
+	    	 <form method="get" name="enquiryForm" id='enquiryForm'  role="form">
+
+				<div class="x_title">Vendor Details:</div>
+
+				<div class="form-group col-xs-6">
+					<label>Vendor Id:</label> <input type="text" class="form-control input-sm"  name="vendor" value="">
+				</div>
+				<div class="form-group col-xs-6">
+					<label>Vendor Name: </label>
+					<input type="text"  class="form-control input-sm" name="vendorName" >
+				</div>
+        <div class="form-group">
+          <label>Address: </label>
+          <textarea rows="4" class="form-control" cols="25" name="address"></textarea>
+        </div>
+				<br/>
+				<br/>
+				<div class="form-group">
+					<button type="button" class="btn btn-info" ng-click="addItems()">
+				    	<span class="glyphicon glyphicon-plus"></span>  Add Item Details
+					</button>
+				</div>
+				<!-- <div class="col-sm-12" class="form-group"> -->
+					<div class="form-group" ng-repeat="order in purchaseOrderList" ng-show="add" >
+
+						<div class="col-xs-2" >
+							<label>Item Id: </label>
+							<input type="text" name="itemid{{$index}}" class="form-control input-sm"  ng-model="order.itemId" id="inputsm">
+						</div>
+								
+						<div class="col-xs-2" >
+							<label>Item Name: </label>
+							<input type="text" name="itemName{{$index}}" class="form-control input-sm"  ng-model="order.itemName" >
+						</div>
+						
+						<div class="col-xs-2" >
+							<label>Quantity: </label>
+							<input type="text" name="quantity {{$index}}" class="form-control input-sm"  ng-model="order.quantity" >
+						</div>
+						
+						<div class="col-xs-2" >
+							<label>Unit Price: </label>
+							<input type="text" name="price {{$index}}" class="form-control input-sm"  ng-model="order.unitPrice">
+						</div>
+						
+						<div class="col-xs-2" >
+							<label>Amount: </label>
+							<input type="text" name="quantity{{$index}}" class="form-control input-sm"  ng-model="order.amount" >
+						</div>
+						
+						<div class="col-xs-2" >
+							<label>Discount: </label>
+							<input type="text" name="quantity{{$index}}" class="form-control input-sm"  ng-model="order.discount" >
+						</div>
+						<input type='hidden' name = 'rowNum' value=" {{$index}}">
+					</div>
+				<div class="col-sm-12">
+				<br/>
+					<div class="form-group"> 
+				    	<button type="button" id = 'enquiryFormButton' class="btn btn-info">Submit</button>
+					</div>
+				</div>
+			</form> 
+	      </div>
+	      <div class="col-sm-2 sidenav">
+	        <h4>NOTIFICATIONS</h4>
+                                        
+                      <!-- First Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>2 Minutes Ago</muted><br/>
+                      		   <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+                      <!-- Second Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>3 Hours Ago</muted><br/>
+                      		   <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+                      <!-- Third Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>7 Hours Ago</muted><br/>
+                      		   <a href="#">Brandon Page</a> purchased a year subscription.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+                      <!-- Fourth Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>11 Hours Ago</muted><br/>
+                      		   <a href="#">Mark Twain</a> commented your post.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+                      <!-- Fifth Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>18 Hours Ago</muted><br/>
+                      		   <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+			<!-- Sixth Action -->
+                      <div class="desc">
+                      	<div class="thumb">
+                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      	</div>
+                      	<div class="details">
+                      		<p><muted>21 Hours Ago</muted><br/>
+                      		   <a href="#">Maddy Page</a> purchased a year subscription.<br/>
+                      		</p>
+                      	</div>
+                      </div>
+
+	      </div>
+         
+        </div>
+        <!-- /page content -->
+		
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            2016 All rights recieved @ Data Management
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+   <script src="js/custom.js"></script>
+
+   <!-- Angular Js-->
+  <script src="js/angular.min.js"></script>
+        <script>
+        var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope) {
+    		$scope.purchaseOrderList = [];
+    			$scope.addItems = function() {
+						$scope.add = true;
+						 $scope.purchaseOrderList.push({
+							 	itemId:0,
+							 	itemName : '' ,
+								uom: '',
+							 	quantity : 0,
+							 	unitPrice : 0,
+								amount: '',
+								discount: 0
+					  });
+				}
+		});
+            $(document).ready(function(){
+                $('#enquiryFormButton').click(function(){
+                console.log('here'); 
+                    $.ajax({
+                        url: "http://localhost/somefile.php",
+                        type: "post",
+                        data: $('#enquiryForm').serialize(),
+                        success: function(d) {
+                            alert(d);
+                        }
+                    });
+                });
+            });
+        </script>
+  </body>
+</html>
